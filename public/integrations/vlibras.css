@@ -1,0 +1,80 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #33293f;
+  background: #faf8fe;
+  --vlibras-btn-focus-visible-outline: 2px solid #7430e8;
+}
+body {
+  margin: 0;
+  padding: 25px;
+}
+main {
+  max-width: 700px;
+  margin: auto;
+  padding-right: 35px;
+}
+h1 {
+  font-size: 22px;
+  margin: 6px 0 12px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  color: #7430e8;
+  font-weight: 700;
+}
+p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #756581;
+}
+.message {
+  padding: 22px;
+  background: white;
+  border: 1px solid #e7def3;
+  border-radius: 12px;
+  font-size: 22px;
+  color: #33293f;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #7430e8;
+  color: white;
+}
+button:focus-visible,
+a:focus-visible,
+.message:focus-visible {
+  outline: 3px solid #2eb8a5;
+  outline-offset: 4px;
+}
+a {
+  color: #7430e8;
+  font-size: 12px;
+}
+#status {
+  background: #f0e8fc;
+  border-radius: 8px;
+  padding: 12px;
+}
+.notice {
+  font-size: 11px;
+  color: #816e52;
+}
+#status[data-error="true"] {
+  background: #fff0e1;
+  color: #8b5017;
+}
+@media (max-width: 450px) {
+  body {
+    padding: 18px;
+  }
+  main {
+    padding-right: 26px;
+  }
+}

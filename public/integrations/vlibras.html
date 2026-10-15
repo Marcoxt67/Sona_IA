@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Ícaro · integração VLibras</title>
+    <link rel="stylesheet" href="/integrations/vlibras.css" />
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">PAINEL VLIBRAS</p>
+      <h1>Texto para interpretação</h1>
+      <p>
+        Abra o botão azul do VLibras e use a seleção de texto da ferramenta. Ela
+        possui controles próprios de avatar e reprodução.
+      </p>
+      <p id="message" class="message" tabindex="0">Oi</p>
+      <button id="select-text" type="button">Selecionar mensagem</button>
+      <p id="status" role="status" aria-live="polite">
+        Carregando o componente oficial do VLibras…
+      </p>
+      <p class="notice">
+        Tradução automática externa · não validada pela equipe Somos Libras. A
+        exibição do botão não garante que o avatar e os sinais tenham terminado
+        de carregar.
+      </p>
+      <p>
+        <a
+          href="https://vlibras.gov.br/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Abrir o site oficial do VLibras</a
+        >
+      </p>
+    </main>
+    <script src="/integrations/vlibras-bridge.js"></script>
+  </body>
+</html>

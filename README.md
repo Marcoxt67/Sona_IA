@@ -4,6 +4,12 @@ Protótipo web responsivo para entrada em português por voz ou texto, consulta 
 
 **Não é um tradutor livre de português para Libras.** Não há sinais nem animações linguisticamente validados incluídos. As seis frases da biblioteca são candidatas à revisão, e todas as consultas retornam indisponibilidade de tradução. O avatar neutro é ilustrativo; não produz gestos apresentados como Libras. Isso evita atribuir significado a animações inventadas. O reprodutor de GLB, legendas temporizadas e velocidade está implementado, mas a validação de uma animação real ainda depende de material e revisão externos.
 
+## Avatar oficial com VLibras
+
+A aba **Intérprete** inclui o cartão **Experimente o avatar 3D oficial**. O botão de ativação carrega o widget oficial VLibras em um painel separado, com avatar padrão `icaro`, sem APIs pagas. A entrada e o histórico locais continuam funcionando sem esse serviço. A saída automática externa não passa a ser uma tradução validada da Somos Libras.
+
+O VLibras requer internet e WebGL. Neste ambiente, o domínio oficial foi bloqueado pelo proxy (403): foram testados o contrato de integração e a falha de rede, **não a execução real do avatar remoto**. Consulte [uso, licenças, rede e verificação pendente](docs/VLIBRAS.md).
+
 ## Estudo experimental de “Oi”
 
 Foi acrescentado um laboratório separado com um avatar de dedos articulados, baseado por observação no vídeo enviado pelo usuário. Não é tradução validada. Na aba **Intérprete**, clique **Abrir estudo experimental de Oi** para ver a animação, pausar, examinar posições, girar o avatar e alterar a velocidade. Consultar “Oi” como tradução continua retornando indisponibilidade.

@@ -1348,3 +1348,68 @@ footer {
     font-size: 11px;
   }
 }
+.vlibras-card {
+  padding: 25px;
+  margin-top: 24px;
+}
+.vlibras-badge {
+  font-size: 10px;
+  color: #247c70;
+  background: #e9f6f2;
+  padding: 9px 12px;
+  border: 1px solid #c7e7df;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.vlibras-privacy,
+.vlibras-explanation,
+.vlibras-instructions {
+  font-size: 12px;
+  color: #756381;
+  line-height: 1.85;
+  margin: 13px 0;
+}
+.vlibras-privacy {
+  background: #f5f1fb;
+  padding: 12px;
+  border-radius: 8px;
+}
+.vlibras-activate {
+  max-width: 300px;
+  margin: 18px 0;
+}
+.vlibras-source {
+  font-size: 11px;
+  color: #7430e8;
+  display: inline-block;
+  text-decoration: underline;
+  margin-top: 12px;
+}
+.vlibras-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.vlibras-actions > .primary-button {
+  max-width: 260px;
+}
+.vlibras-frame {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #e6dcee;
+  border-radius: 12px;
+  background: #faf8fe;
+}
+@media (max-width: 760px) {
+  .vlibras-card {
+    padding: 20px;
+  }
+  .vlibras-frame {
+    height: 700px;
+  }
+  .vlibras-actions {
+    gap: 15px;
+  }
+}

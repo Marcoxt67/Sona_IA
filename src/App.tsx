@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Avatar, { AvatarBoundary } from "./components/Avatar";
 import ExperimentalStudy from "./components/ExperimentalStudy";
+import VLibrasIntegration from "./components/VLibrasIntegration";
 import { api, type Entry, type HistoryItem, type Translation } from "./lib/api";
 import { useSpeech } from "./lib/speech";
 function Icon({ name, size = 22 }: { name: string; size?: number }) {
@@ -632,6 +633,7 @@ export default function App() {
             </section>
           )}
         </div>
+        {tab === "interpreter" && <VLibrasIntegration text={text} />}
         {tab === "interpreter" && <ExperimentalStudy />}
         <aside className="responsibility">
           <span className="responsibility-icon">
