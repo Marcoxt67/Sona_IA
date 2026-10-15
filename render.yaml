@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: icaro-somos-libras
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: DATABASE_PATH
+        value: /var/data/icaro.sqlite
+    disk:
+      name: icaro-data
+      mountPath: /var/data
+      sizeGB: 1
