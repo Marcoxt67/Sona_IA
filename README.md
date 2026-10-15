@@ -4,6 +4,14 @@ Protótipo web responsivo para entrada em português por voz ou texto, consulta 
 
 **Não é um tradutor livre de português para Libras.** Não há sinais nem animações linguisticamente validados incluídos. As seis frases da biblioteca são candidatas à revisão, e todas as consultas retornam indisponibilidade de tradução. O avatar neutro é ilustrativo; não produz gestos apresentados como Libras. Isso evita atribuir significado a animações inventadas. O reprodutor de GLB, legendas temporizadas e velocidade está implementado, mas a validação de uma animação real ainda depende de material e revisão externos.
 
+## Estudo experimental de “Oi”
+
+Foi acrescentado um laboratório separado com um avatar de dedos articulados, baseado por observação no vídeo enviado pelo usuário. Não é tradução validada. Na aba **Intérprete**, clique **Abrir estudo experimental de Oi** para ver a animação, pausar, examinar posições, girar o avatar e alterar a velocidade. Consultar “Oi” como tradução continua retornando indisponibilidade.
+
+[**Ver a prévia animada sem instalar o projeto**](docs/ESTUDO_OI.md)
+
+O GLB e a fonte de geração estão incluídos; para regenerar, use `npm run animation:oi`. O vídeo original não é distribuído. [Referência, método e limitações](docs/ESTUDO_OI.md).
+
 ## Executar
 
 Requisito: Node.js **24 LTS** e npm. Não precisa de conta, chave, banco externo ou API paga. O SQLite usa o módulo nativo `node:sqlite` (pode emitir aviso experimental no Node 24).
@@ -37,7 +45,7 @@ npm run test:e2e
 
 Se já houver Chromium instalado, use `CHROMIUM_PATH=/caminho/do/chromium npm run test:e2e` em vez de baixar outro navegador. O teste de navegador inclui também um GLB sintético sem sinalização para verificar pausa, legendas, velocidade e repetição (esse ativo só existe no teste). Ele inicia um servidor isolado na porta 3101 com SQLite em memória; execute o build antes dele. Inclui fluxo de interface, responsividade, ausência de reconhecimento de voz e ciclo de reconhecimento simulado (não captura áudio real).
 
-Os testes verificam a barreira de validação, frases inteiras, limites de entrada, isolamento de histórico, remoção, SQL parametrizado, retenção e persistência após reabertura. O build verifica TypeScript e compila o frontend. Não há testes de validação linguística ou de animações reais; nenhum sinal está liberado.
+Os testes verificam a barreira de validação, frases inteiras, limites de entrada, isolamento de histórico, remoção, SQL parametrizado, retenção e persistência após reabertura. O build verifica TypeScript e compila o frontend. O estudo experimental é carregado e exercitado em testes de navegador; esses testes não validam a correção linguística. Nenhum sinal está liberado como tradução.
 
 Teste manual: digite `Bom dia`, consulte, confira o aviso de indisponibilidade e veja a consulta no histórico. Recarregue e confira a persistência. Limpe o histórico. Busque uma frase na biblioteca e volte ao intérprete. Permita o microfone em um navegador compatível e HTTPS/localhost, fale, interrompa, revise a transcrição e consulte. Negue a permissão para verificar a alternativa textual.
 
@@ -45,6 +53,8 @@ Teste manual: digite `Bom dia`, consulte, confira o aviso de indisponibilidade e
 
 - `src/App.tsx`: interface, estados, biblioteca, histórico e controles.
 - `src/components/Avatar.tsx`: modelo neutro e reprodutor reutilizável de animações GLB.
+- `src/components/ExperimentalStudy.tsx`: laboratório separado de revisão do estudo de “Oi”.
+- `scripts/create-oi-study.mjs`: geração reproduzível do GLB experimental em `public/animations`.
 - `src/lib/speech.ts`: adaptação da Web Speech API, transcrição parcial/final e erros.
 - `src/lib/api.ts`: cliente HTTP e identificador do navegador.
 - `server/catalog.mjs`: catálogo e contrato de provedor de tradução substituível por integração futura com IA.

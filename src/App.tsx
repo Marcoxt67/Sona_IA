@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Avatar, { AvatarBoundary } from "./components/Avatar";
+import ExperimentalStudy from "./components/ExperimentalStudy";
 import { api, type Entry, type HistoryItem, type Translation } from "./lib/api";
 import { useSpeech } from "./lib/speech";
 function Icon({ name, size = 22 }: { name: string; size?: number }) {
@@ -631,6 +632,7 @@ export default function App() {
             </section>
           )}
         </div>
+        {tab === "interpreter" && <ExperimentalStudy />}
         <aside className="responsibility">
           <span className="responsibility-icon">
             <Icon name="check" size={20} />

@@ -83,7 +83,7 @@ function NeutralAvatar() {
     </group>
   );
 }
-function ValidatedAnimation({
+function ClipAnimation({
   asset,
   playing,
   speed,
@@ -91,13 +91,13 @@ function ValidatedAnimation({
   restart,
   onTime,
   onEnd,
+  seekTime,
 }: AvatarProps & { asset: Asset }) {
   const gltf = useLoader(GLTFLoader, asset.url);
   const mixer = useRef<AnimationMixer | null>(null);
   useEffect(() => {
     const clip = gltf.animations.find((c) => c.name === asset.clip);
-    if (!clip)
-      throw new Error("A animação validada não contém o clipe especificado.");
+    if (!clip) throw new Error("A animação não contém o clipe especificado.");
     const instance = new AnimationMixer(gltf.scene);
     mixer.current = instance;
     const action = instance.clipAction(clip);
@@ -112,6 +112,14 @@ function ValidatedAnimation({
       instance.uncacheRoot(gltf.scene);
     };
   }, [gltf, asset, repeat, restart, onEnd]);
+  useEffect(() => {
+    if (mixer.current && seekTime !== undefined) {
+      const clip = gltf.animations.find((c) => c.name === asset.clip)!;
+      mixer.current.existingAction(clip)?.reset().play();
+      mixer.current.setTime(seekTime);
+      onTime(seekTime);
+    }
+  }, [seekTime, restart, asset, onTime, gltf]);
   useFrame((_, delta) => {
     if (mixer.current && playing) {
       mixer.current.update(delta * speed);
@@ -125,6 +133,9 @@ function ValidatedAnimation({
 }
 type AvatarProps = {
   asset?: Asset;
+  experimental?: boolean;
+  seekTime?: number;
+  cameraAngle?: number;
   playing: boolean;
   speed: number;
   repeat: boolean;
@@ -135,7 +146,7 @@ type AvatarProps = {
 export default function Avatar(props: AvatarProps) {
   return (
     <Canvas
-      camera={{ position: [0, 0.55, 5.3], fov: 34 }}
+      camera={{ position: [0, 0.55, props.experimental ? 4.1 : 5.3], fov: 34 }}
       onCreated={({ camera }) => camera.lookAt(0, 0.45, 0)}
       fallback={
         <div className="avatar-fallback">
@@ -143,20 +154,24 @@ export default function Avatar(props: AvatarProps) {
         </div>
       }
       aria-label={
-        props.asset
-          ? "Avatar com animação validada em Libras"
-          : "Avatar ilustrativo em postura neutra, sem tradução em Libras"
+        props.experimental
+          ? "Estudo experimental de movimento para Oi, sem validação em Libras"
+          : props.asset
+            ? "Avatar com animação validada em Libras"
+            : "Avatar ilustrativo em postura neutra, sem tradução em Libras"
       }
     >
       <ambientLight intensity={1.8} />
       <directionalLight position={[3, 5, 4]} intensity={3} />
       <directionalLight position={[-3, 2, 1]} intensity={1} color="#d8ccff" />
       <Suspense fallback={null}>
-        {props.asset ? (
-          <ValidatedAnimation {...props} asset={props.asset} />
-        ) : (
-          <NeutralAvatar />
-        )}
+        <group rotation={[0, props.cameraAngle ?? 0, 0]}>
+          {props.asset ? (
+            <ClipAnimation {...props} asset={props.asset} />
+          ) : (
+            <NeutralAvatar />
+          )}
+        </group>
       </Suspense>
     </Canvas>
   );
